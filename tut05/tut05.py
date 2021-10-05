@@ -96,7 +96,7 @@ def generate_marksheet():
                     sheet=wb["Sem{}".format(str(j))]
                     for i in data[v]:
                          x=subject_data[i[0]]
-                         sheet.append([ sheet.max_row,i[0],x[0],x[1],x[2],i[2],i[3] ])
+                         sheet.append([ sheet.max_row,i[0],x[0],x[1],(x[2]),i[2],i[3] ])
           wb.save(".\output\{}.xlsx".format(a))
 
    return  
