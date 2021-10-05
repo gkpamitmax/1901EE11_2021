@@ -24,6 +24,7 @@ def generate_marksheet():
       reader = csv.DictReader(file)
       for row in reader:
           subject_data[row['subno']]=[row['subname'],row['ltp'],row['crd']]
+
  # Opening the grades and store in a data     
    with open('grades.csv', 'r') as file:
       reader = csv.DictReader(file)
@@ -33,7 +34,7 @@ def generate_marksheet():
                data[x] +=[[row['SubCode'],row['Credit'],row['Sub_Type'],row['Grade'].strip()]]
          else:
              data[x] =[[row['SubCode'],row['Credit'],row['Sub_Type'],row['Grade'].strip()]]
- #Opening the subject_master and store in a subject_data type container
+ #Opening the names_roll and store in roll_data
    with open('names-roll.csv', 'r') as file:
       reader = csv.DictReader(file)
       for row in reader:
@@ -41,7 +42,8 @@ def generate_marksheet():
 
  # Grades Map
    grades = {'AA': 10, 'AB': 9, 'BB': 8, 'BC': 7,
-          'CC': 6, 'CD': 5, 'DD': 4,'DD*':4,'F*':0, 'F': 0, 'I': 0}         
+          'CC': 6, 'CD': 5, 'DD': 4,'DD*':4,'F*':0, 'F': 0, 'I': 0}     
+              
  # now making the overall sheet for all roll no
    with open('names-roll.csv', 'r') as file:
       reader = csv.DictReader(file)
