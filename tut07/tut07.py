@@ -24,9 +24,9 @@ def check_feedback():
         for row in reader:
             if row['subno'] in course_data:
               for w in course_data[row['subno']]:
-                q=(row['rollno'],row['subno'],w)
+                q=(row['rollno'],row['subno'],str(w))
                 if q in feedback_data:
-                  pass
+                  continue
                 else:
                    if row['rollno'] in student_data:
                      o=[row['rollno'],int(row['register_sem']),int(row['schedule_sem']),row['subno']]+student_data[row['rollno'] ]
@@ -37,16 +37,14 @@ def check_feedback():
      wb.save('./course_feedback_remaining.xlsx')
      file.close()
 
-
-
 def feedback_not_submitted():
   
 
    with open('course_feedback_submitted_by_students.csv','r') as file:
      reader = csv.DictReader(file)
      for row in reader:
-       	x=(row['stud_roll'],row['course_code'],row['feedback_type'])
-        feedback_data[x]=1
+         x=(row['stud_roll'],row['course_code'],row['feedback_type'])
+         feedback_data[x]=1
    file.close()
 
    regex = r"([0-9.]+)-([0-9.]+)-([0-9.]+)"
@@ -64,11 +62,9 @@ def feedback_not_submitted():
            w.append(3)
         if(w):
           course_data[row['subno']]=w
+         
 
    file.close()
-
-   # for x in course_data:
-	#    print(course_data[x])
 
    with open('studentinfo.csv', 'r') as file:
       reader = csv.DictReader(file)
@@ -84,15 +80,9 @@ def feedback_not_submitted():
    file.close()
 
    check_feedback()
-	
-
-
 
 
 	# ltp_mapping_feedback_type = {1: 'lecture', 2: 'tutorial', 3:'practical'}
 	# output_file_name = "course_feedback_remaining.xlsx" 
-
-
-
 
 feedback_not_submitted()
