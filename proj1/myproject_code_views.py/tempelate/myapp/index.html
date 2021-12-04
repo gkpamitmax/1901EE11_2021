@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+
+</head>
+<body class='bd'>
+    
+   
+
+    <div class="container">
+      <div class="upload row">
+        
+          
+        <h1>Project 1 CS384 - GUI Based Marksheet Generator</h1></br>
+      </br>
+      </br>
+          
+        
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="row">
+           <div class="col-6">
+          <h4 class='rs'>Upload master-roll</h4>
+          <input class="ibutton" type="file" id="file1" name="file1"></br>
+           </div>
+        </div>
+      </br>
+      </br>
+        <div class="row">
+           <div class="col-6">
+          <h4 bgcolor='cyan' class='rs'>Upload response sheet</h4>
+          <input class="ibutton" type="file" id="file2" name="file2"></br>
+           </div>
+        </div>
+      </br>
+      </br>
+
+        <div class="row">
+      <label for="posmarks"><h4>Positive Marks</h4></label><br>
+      <input class="ibutton1"  id="positive" name="positive"><br>
+          </div>
+
+        </br>
+      </br>
+          <div class="row">
+      <label for="negmarks"><h4>Negative Marks</h4></label><br>
+      <input class="ibutton1"  id="negative" name="negative"><br>
+          </div>
+        </div>
+      </br>
+      </br>
+        <div class="row">
+          
+      <button class="ibutton2" type="submit">Generate Roll No wise Marksheet</button>
+        </div>
+    </form>
+  </br> 
+      
+   <h4 class='al'>{{message1}}</h4>
+
+<h4 class='al'>{{message2}}</h4>
+     
+      <form action= {% url 'concise_sheet' %} >
+        <div class="row">
+      <button class="ibutton2">Generate Concise sheet</button>
+
+        </div>
+      </form>
+    </br>
+      <form action= {% url 'send_emails' %} >
+        <div class="row">
+      <button class="ibutton2">Send Email</button>
+        </div>
+      </form>
+  </div>
+   
+
+    
+</body>
+</html>
